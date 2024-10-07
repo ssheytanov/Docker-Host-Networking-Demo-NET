@@ -1,0 +1,27 @@
+services:
+
+    api-gateway:
+        container_name: api-gateway-service
+        image: demo/api-gateway
+        build:
+            context: .
+            dockerfile: gateways/ApiGateway/Dockerfile
+        network_mode: "host"
+        environment:
+            - HTTP_PORTS=27026
+            - ASPNETCORE_ENVIRONMENT=Docker
+        restart: on-failure
+        depends_on:
+            - tmdb-collector   
+
+    tmdb-collector:
+        container_name: api-tmdb-collector
+        image: demo/tmdb-collector
+        network_mode: "host"
+        build:
+            context: .
+            dockerfile: apis/TmdbCollectorApi/Dockerfile
+        environment:
+            - HTTP_PORTS=27025
+            - ASPNETCORE_ENVIRONMENT=Docker
+        restart: on-failure
