@@ -9,7 +9,7 @@ services:
         network_mode: "host"
         environment:
             - HTTP_PORTS=27026
-            - ASPNETCORE_ENVIRONMENT=Docker
+            - ASPNETCORE_ENVIRONMENT=Development
         restart: on-failure
         depends_on:
             - tmdb-collector   
@@ -23,5 +23,5 @@ services:
             dockerfile: apis/TmdbCollectorApi/Dockerfile
         environment:
             - HTTP_PORTS=27025
-            - ASPNETCORE_ENVIRONMENT=Docker
+            - ASPNETCORE_ENVIRONMENT=Development
         restart: on-failure
