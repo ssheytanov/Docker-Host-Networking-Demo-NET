@@ -19,7 +19,7 @@ namespace ApiGateway.Web
 
             builder.Services
                 .AddRefitClient<ITmdbCollectorApi>()
-                .ConfigureHttpClient(c => c.BaseAddress = new Uri("http://localhost:27025"));
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration["TmdbCollectorApiUrl"]));
 
             var app = builder.Build();
 
